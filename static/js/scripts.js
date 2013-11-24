@@ -250,11 +250,11 @@ function getPersonUrl(vitalRisk) {
 
 function addPersonToHistogram(bar, vitalId, subVitalName) {
 
-	subVitalClassName = '.' + subVitalName;
-	if (subVitalName == '') {
-		subVitalClassName = ''
-	}
-    child = $('.vital-overlay-value.' + vitalId).children(subVitalClassName);
+	// subVitalClassName = '.' + subVitalName;
+	// if (subVitalName == '') {
+	// 	subVitalClassName = ''
+	// }
+    child = $('.vital-overlay-value.' + vitalId).children();
    	risk = child.attr('class').split(' ')[1];
   	value = child.html();
 	imgUrl = getPersonUrl(risk);
@@ -322,7 +322,12 @@ function loadVitalCharts(vital, ranges) {
 	minData = d3.min(dataset);
     maxData = d3.max(dataset);
 
-	var svg = d3.select('.vital-stats.' + vital.id)
+    var subVital = '';
+    if (ranges.name != "") {
+    	subVital = '.' + ranges.name
+    }
+
+	var svg = d3.select('.vital-stats.' + vital.id + subVital)
 				.append("svg")
 				.attr("width", w)
 				.attr("height", h)
@@ -422,7 +427,12 @@ function loadVitalHistograms(vital, ranges) {
         .ticks(4)
         .tickFormat(formatAsPercentage);
 
-    var svg = d3.select('.vital-stats.' + vital.id).append("svg")
+    var subVital = '';
+    if (ranges.name != "") {
+    	subVital = '.' + ranges.name
+    }
+
+    var svg = d3.select('.vital-stats.' + vital.id + subVital).append("svg")
         .attr("width", histogramWidth + margin.left + margin.right)
         .attr("height", histogramHeight + margin.top + margin.bottom)
         .attr("class", "histogram " + ranges.name)

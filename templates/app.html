@@ -48,17 +48,13 @@
                     <li><a href="#" class="{{ vital.vital_id }} vital-overlay-historical-link">Historical</a>
                 </ul>
             </div>
-            <div class="vital-overlay-content {{ vital.vital_id }}">
-            	Your {{ vital.vital_name.lower() }} is 
-            	<span class="vital-overlay-value {{ vital.vital_id }}">
-            		{% for vital_value in vital.vital_values -%}
-            			<span class="{{ vital.vital_id }}-value-{{ loop.index0 }}">{{ vital_value }}</span>
-	           			{%- if not loop.last -%}
-	           				{{ vital.vital_values_sep|safe }}
-	           			{%- endif -%}
-            		{%- endfor %}
+            {% for sub_vital in vital.vital_subs %}
+            <div class="vital-overlay-content {{ vital.vital_id }}-{{ sub_vital.lower() }}">
+            	Your {{ sub_vital.lower() }} {{ vital.vital_id }} is 
+            	<span class="vital-overlay-value {{ vital.vital_id }} {{ sub_vital.lower() }}">
+            		<span class="{{ vital.vital_id}}-{{ sub_vital.lower() }}-value-{{ loop.index0 }}">{{ vital.vital_values[loop.index0] }}</span>
             	</span> {{ vital.vital_unit|safe }}
-                <div class="vital-stats {{ vital.vital_id }}"></div>
+                <div class="vital-stats {{ vital.vital_id }} {{ sub_vital.lower() }}"></div>
 <!--                 <div class="population-stats">
                     <p>You have <span class="high-risk">worse</span> cholesterol than <span class="high-risk">84%</span> of the Thai population</p>
                 </div>
@@ -69,9 +65,10 @@
                     </li>
                 </ul> -->
             </div>
-            <div class="vital-overlay-historical {{ vital.vital_id }}"></div>
+            <div class="vital-overlay-historical {{ vital.vital_id }} {{ sub_vital.lower() }}"></div>
+            {% endfor %}
             <div class="subvital-menu">
-                <ul class="subVital-nav-menu">
+                <ul class="subvital-nav-menu">
                 {% for subVital in vital.vital_subs %}
                     <li><a href="#" class="{{ subVital }}-content-link subvital-nav-item-active">{{ subVital }}</a>
                 {% endfor %}

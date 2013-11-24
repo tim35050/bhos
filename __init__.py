@@ -101,7 +101,7 @@ def get_app_context():
 	vital = {}
 	vital['vital_id'] = 'bmi'
 	vital['vital_name'] = 'BMI'
-	vital['vital_subs'] = []
+	vital['vital_subs'] = ['']
 	vital['vital_icon_name'] = 'bmi-icon.png'
 	vital['vital_values'] = [27] #[21.26]
 	vital['vital_values_sep'] = ''
