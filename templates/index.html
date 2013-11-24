@@ -1,0 +1,15 @@
+{% include 'header-login.html' %}
+<div class="login-logo">
+</div>
+<div id="login" >
+    <h2>Discover your health.</h2>
+    {{ error }}
+    <form action="/login" method="POST">
+    	<!--<label for="email">Email</label>-->
+    	<input type="text" placeholder="Email" name="email">
+    	<!--<label for="password">Password</label>-->
+    	<input type="password" placeholder="Password" name="password">
+    	<input type="submit" class="submit-login" value="LOGIN">
+    </form>
+</div>
+{% include 'footer-login.html' %}

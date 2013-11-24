@@ -1,0 +1,613 @@
+/*
+Resetting and rebuilding styles have been helped along thanks to the fine work of
+Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
+along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+and Blueprint http://www.blueprintcss.org/
+*/
+
+/* =Reset
+-------------------------------------------------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	border: 0;
+	font-family: inherit;
+	font-size: 100%;
+	font-style: inherit;
+	font-weight: inherit;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+html {
+	font-size: 62.5%; /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
+	overflow-y: scroll; /* Keeps page centred in all browsers regardless of content height */
+	-webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+	-ms-text-size-adjust: 100%; /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+}
+body {
+	background: #fff;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+nav,
+section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+table { /* tables still need 'cellspacing="0"' in the markup */
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	font-weight: normal;
+	text-align: left;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+a:focus {
+	outline: thin dotted;
+}
+a:hover,
+a:active { /* Improves readability when focused and also mouse hovered in all browsers people.opera.com/patrickl/experiments/keyboard/test */
+	outline: 0;
+}
+a img {
+	border: 0;
+}
+
+/* =Global
+----------------------------------------------- */
+
+body {
+	font-family: tahoma, sans-serif;
+	font-size: 16px;
+	margin: 0;
+	background: url('images/bg-pattern.png');
+	color: #333;
+	font-family: 'Amaranth', sans-serif;
+	display: none;
+	/*font-family: 'PT Sans', sans-serif;*/
+}
+a {
+	color: #333;
+}
+p {
+	margin-top: 0;
+}
+#profile label {
+	text-align: right;
+	margin-right: 10px;
+	display: inline-block;
+	float: left;
+	width: 60px;
+	color: #999;
+	font-style: italic;
+}
+ul li {
+	list-style: none;
+	margin-bottom: 10px;
+}
+.link-span {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+#wrapper {
+	position: relative;
+	padding-left: 15px;
+	padding-right: 15px;
+	max-width: 1050px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#header {
+
+}
+
+#nav-menu, ul.navigation {
+}
+
+#branding {
+	background-image: url('images/logo-xsmall.png');
+	background-repeat: no-repeat;
+	background-size: 76 79;
+	background-position: center center;
+	position: relative;
+	height: 90px;
+	line-height: 90px;
+}
+
+.site-name, .site-description {
+	font-size: 16px;
+}
+.site-name {
+	float: left;
+}
+.site-description {
+	float: right;
+}
+
+/* LOGIN PAGE */
+
+body.login {
+	display: block;
+}
+.login-logo {
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url('images/logo-medium.png');
+	background-repeat: no-repeat;
+	background-size: 187 192;
+	background-position: center center;
+	width: 187px;
+	height: 220px;
+}
+#login {
+	margin-left: auto;
+	margin-right: auto;
+	width: 500px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#login h2 {
+	text-align: center;
+	color: #333;
+	font-size: 22px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	margin-top: 0;
+}
+form label, input {
+	width: 100%;
+}
+
+form label {
+	margin-bottom: 5px;
+	font-style: none;
+	display: block;
+	color: #666;
+}
+form input {
+	display: block;
+	height: 50px;
+	margin-bottom: 10px;
+	background: #FFF;
+	border-color: #DDD;
+	border-width: 1px;
+	border-style: solid;
+	font-size: 16px;
+    border-radius: 5px;
+	padding: 5px;
+}
+input[type=submit] {
+	color: #333;
+    border: 0;
+   	margin-top: 15px;
+    height:50px;
+    background: #FFF;
+	-webkit-box-shadow: 0px 3px 0px 0px #666;
+	box-shadow: 0px 3px 0px 0px #666;
+	font-family: 'PT Sans', sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.gradient {
+	/* Old browsers */
+    background: -moz-linear-gradient(top, #FBEBB4 1%, #FBC500 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #FBEBB4), color-stop(100%, #FBC500));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #FBEBB4 1%, #FBC500 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #FBEBB4 1%, #FBC500 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #FBEBB4 1%, #FBC500 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #FBEBB4 1%, #FBC500 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBEBB4', endColorstr='#FBC500', GradientType=0);
+    /* IE6-9 */
+}
+
+/* CONTENT */
+.content, .vital, .vital-overlay {
+	margin-top: 5px;
+	background: #FFF;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 2px 0px 0px #999;
+	box-shadow: 0px 2px 0px 0px #999;
+}
+.content, .vital-overlay {
+	padding: 15px;
+}
+.content h2 {
+	margin-top: 2px;
+	margin-bottom: 10px;
+	font-size: 22px;
+	font-weight: bold;
+}
+.content p {
+	font-size: 16px;
+	margin-bottom: 10px;
+	line-height: 1.4em;
+}
+#home, #profile, #vitals, #diagnosis {
+	position: absolute;
+	max-width: 1050px;
+	left: 15px;
+	right: 15px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+#home {
+	display: block;
+}
+#profile, #vitals, #diagnosis {
+	display: none;
+}
+#vitals {
+
+	text-align: center;
+}
+
+/* NAVIGATION */
+#nav-menu {
+	left: 15px;
+	right: 15px;
+	border-radius: 5px;
+	padding-left: 5px;
+	background: #FFF;
+	-webkit-box-shadow: 0px 4px 0px 0px #999;
+	box-shadow: 0px 4px 0px 0px #999;
+}
+ul.navigation {
+	padding: 0;
+	margin-bottom: 10px;
+}
+ul.navigation li {
+	display: inline-block;
+	margin-bottom: auto;	
+}
+ul.navigation li a {
+	margin-left: 0;
+	margin-right: 0;
+	display: inline-block;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: 12 center;
+	background-size: 24px 24px;
+	padding-left: 45px;
+	padding-right: 15px;
+	text-transform: uppercase;
+	height: 46px;
+	line-height: 50px;
+	font-family: 'PT Sans', sans-serif;
+	font-weight: bold;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #EEE;
+	font-size: 20px;
+}
+a.active-link {
+	background-color: #FBC500 !important;
+	color: #FFF;
+}
+a.nav-profile {
+	background-image: url('images/profile-icon.png');
+}
+a.nav-profile-active {
+	background-image: url('images/profile-icon-selected.png');
+}	
+a.nav-vitals {
+	background-image: url('images/vitals-icon.png');
+}
+a.nav-vitals-active {
+	background-image: url('images/vitals-icon-selected.png');
+}
+a.nav-diagnosis {
+	background-image: url('images/diagnosis-icon.png');
+}
+a.nav-diagnosis-active {
+	background-image: url('images/diagnosis-icon-selected.png');
+}
+/* Vitals Page */
+
+.vital {
+	text-align: left;
+	display: inline-block;
+	height: 100px;
+	width: 240px;
+	margin-bottom: 15px;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 80px;
+	border-left-width: 6px;
+	border-left-style: solid;
+	background-color: #FFF;
+	background-size: 60px 60px, 40px 40px;
+	background-repeat: no-repeat, no-repeat; 
+	background-position: 10 center, right top;"
+}
+.vital-icon, .vital-icon-overlay {
+	float: left;
+}
+
+.vital-icon-overlay {
+	padding: 15px;
+}
+.vital-name {
+	margin-top: 25px;
+	font-size: 20px;
+	font-weight: bold;
+}
+.vital-value {
+	padding-top: 0px;
+}
+.vital-value span {
+	font-size: 20px;
+	font-weight: normal;
+}
+.vital-overlay {
+	background-color: #FFF;
+	background-repeat: no-repeat; 
+	background-position: 25 25;
+	background-attachment: local;
+	background-size: 50px 50px;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 20px;
+	border-top-style: solid;
+	border-top-width: 6px;
+}
+ul.vital-breakdown {
+	padding-left: 0;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 0em;
+}
+.vital-overlay-nav {
+	position: relative;
+}
+
+ul.vital-nav-menu li {
+	display: inline-block;
+}
+ul.vital-nav-menu li a {
+	width: 120px;
+	height: 60px;
+	line-height: 60px;
+	font-size: 20px;
+	padding: 10px;
+	margin-left: 10px;
+	text-decoration: none;
+	border-radius: 5px;
+	font-family: "PT Sans", sans-serif;
+	text-transform: uppercase;
+
+}
+a.vital-nav-item-active {
+	background-color: #EEE;
+	color: #000;
+}
+.subvital-menu {
+	position: absolute;
+	top: 10px;
+	right: 90px;
+}
+ul.subvital-nav-menu li {
+	display: inline-block;
+}
+ul.subvital-nav-menu li a {
+	width: 120px;
+	height: 60px;
+	line-height: 60px;
+	font-size: 20px;
+	padding: 10px;
+	margin-left: 10px;
+	text-decoration: none;
+	border-radius: 5px;
+	font-family: "PT Sans", sans-serif;
+	text-transform: uppercase;
+}
+a.vital-nav-item-active {
+	background-color: #EEE;
+	color: #000;
+}
+.close-overlay {
+	background-image: url('images/close-icon.png');
+	background-size: 53px 53px;
+	top: 20px;
+	right: 20px;
+	height: 53px;
+	width: 53px;
+	position: absolute;
+	display: block;
+}
+.vital-overlay-name, .vital-overlay-date {
+	padding-left: 70px;
+}
+.vital-overlay-name {
+	font-size: 28px;
+	font-weight: bold;
+	margin-top: 0px;
+}
+.vital-overlay-date {
+	margin-top: 5px;
+	font-size: 14px;
+	color: #999;
+	font-family: 'PT Sans', sans-serif;
+}
+.vital-overlay-content {
+	text-align: center;
+	margin-top: 13px;
+	font-size: 20px;
+	color: #666;
+}
+.vital-overlay-historical {
+	display: none;
+	text-align: center;
+}
+.vital-overlay-value {
+	font-family: 'PT Sans', sans-serif;
+	font-weight: bold;
+	font-size: 48px;
+	margin-left: 2px;
+	margin-right: 0px;
+}
+.high-risk {
+	color: #EC5968;
+}
+.high-risk-border-left {
+	border-left-color: #EC5968;
+}
+.high-risk-border-top {
+	border-top-color: #EC5968;
+}
+.medium-risk {
+	color: #F7A649;
+}
+.medium-risk-border-left {
+	border-left-color: #F7A649;
+}
+.medium-risk-border-top {
+	border-top-color: #F7A649;
+}
+.low-risk {
+	color: #78BB66;
+}
+.low-risk-border-left {
+	border-left-color: #78BB66;
+}
+.low-risk-border-top {
+	border-top-color: #78BB66;
+}
+
+.vital-description {
+	clear: none;
+	margin-bottom: 10px;
+}
+.vital-risk-description, .vital-value-explanation {
+	display: inline-block;
+	width: 75%;
+}
+.vital-stats {
+	text-align: center;
+	margin-top: 14px;
+}
+.vital-stats-image {
+	max-width: 100%;
+}
+.avatar {
+}
+.img-avatar {
+	max-width: 50%;
+	float: left;
+}
+.last-visit {
+	width: auto;
+	padding: 7px;
+	background: #FFF;
+	font-style: italic;
+	margin-top: 18px;
+	text-align: center;
+	font-size: 14px;
+}
+/* Profile Page */
+.patient-profile {
+}
+ul.patient-profile-items {
+	padding-left: 0;
+}
+ul.patient-profile-items li {
+	list-style: none;
+}
+
+/* Doctor Page */
+.kongkiat {
+	float: left; 
+	margin-right: 20px;
+	max-width: 80px;
+}
+
+/* D3 Styles */
+.axis path,
+.axis line {
+    fill: none;
+    stroke: none;
+    shape-rendering: crispEdges;
+}
+.historical-line {
+	fill: none;
+	stroke-width: 3px;
+}
+.historical path,
+.historical line {
+	fill: none;
+	stroke: #999;
+	shape-rendering: crispEdges;
+}
+
+.histogram-axis path,
+.histogram-axis line {
+	fill: none;
+	stroke: #999;
+	shape-rendering: crispEdges;
+} 
+.vital-stats-label {
+	font-size: 14px;
+	fill: #666;
+}
+.axis text, .historical text {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 14px;
+    fill: #666;
+}
+.bar rect {
+  shape-rendering: crispEdges;
+}
+.histogram-axis text {
+	font-size: 10px;
+	fill: #666;
+}
+.histogram-label {
+	font-size: 14px;
+	fill: #666;
+}
+.y.histogram-label {
+	transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+}
+
+
+
