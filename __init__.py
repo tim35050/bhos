@@ -54,7 +54,7 @@ def myapp():
 		#context['birthday'] = birthday
 		#context['gender'] = gender
 		context['name'] = "Theerapat Yangyuenthanasan"
-		context['birthday'] = "26-12-1986"
+		context['years'] = "26"
 		context['gender'] = "Male"
 		context['weight'] = 74.84
 		context['height'] = 177.8

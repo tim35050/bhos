@@ -4,10 +4,10 @@
         <div id="profile" class="tile left-content" style="background-image: url('static/css/images/profile-pic.png'); background-position: 15px center; background-repeat: no-repeat;">
             <div class="profile-info">
                 <div class="profile-name">
-                    Timothy Meyers
+                    {{ context.name }}
                 </div>
                 <div class="profile-content">
-                    Male, 26 years old, 173cm, 75kg
+                    {{ context.gender }}, {{ context.years }} years old, {{ context.height }}cm, {{ context.weight }}kg
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <div class="health-score-commentary">
                     You are a very healthy and handsome young man!  Stay at this level of health and you will live a long and wonderful life!
                 </div>
-                <div class="fb-share-button" data-href="http://bhos.tim-meyers.com/images/health-score.png" data-type="button"></div>
+                <div class="fb-share-button" data-href="http://bhos.tim-meyers.com/fb-share-template.html" data-type="button"></div>
             </div>
             <div id="health-details">
                 <div class="vitals-intro">
