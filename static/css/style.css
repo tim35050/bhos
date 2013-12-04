@@ -85,9 +85,8 @@ body {
 	margin: 0;
 	background: url('images/bg-pattern.png');
 	color: #333;
-	font-family: 'Amaranth', sans-serif;
 	display: none;
-	/*font-family: 'PT Sans', sans-serif;*/
+	font-family: 'PT Sans', sans-serif;
 }
 a {
 	color: #333;
@@ -95,27 +94,18 @@ a {
 p {
 	margin-top: 0;
 }
-#profile label {
-	text-align: right;
-	margin-right: 10px;
-	display: inline-block;
-	float: left;
-	width: 60px;
-	color: #999;
-	font-style: italic;
-}
 ul li {
 	list-style: none;
 	margin-bottom: 10px;
 }
-.link-span {
+/*.link-span {
 	position: absolute;
 	margin: auto;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
-}
+}*/
 #wrapper {
 	position: relative;
 	padding-left: 15px;
@@ -124,32 +114,66 @@ ul li {
 	margin-left: auto;
 	margin-right: auto;
 }
-
+#dark-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.3);
+}
+.popup {
+	padding: 20px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -200px;
+	margin-top: -150px;
+	background: #FFF;
+	width: 400px;
+	height: 280px;
+	border-radius: 5px;
+}
+.popup p {
+	margin-bottom: 20px;
+}
+.close-popup {
+	background-image: url('images/close-icon.png');
+	background-size: 35px 35px;
+	background-repeat: no-repeat;
+	top: 20px;
+	right: 20px;
+	height: 35px;
+	width: 35px;
+	position: absolute;
+	display: block;
+}
+.popup p {
+	font-size: 14px;
+	color: #999;
+}
 #header {
-
+	margin-left: 0;
+	margin-top: 30px;
+}
+.nav-logo {
+	position: absolute;
+	left: 18px;
+	bottom: 0px;
+}
+.nav-cog {
+	position: absolute;
+	right: 12px;
+	bottom: 11px;
+}
+.site-name {
+	font-family: 'Amaranth', sans-serif;
+	font-size: 18px;
+	padding-left: 87px;
+	padding-right: 15px;
 }
 
 #nav-menu, ul.navigation {
-}
-
-#branding {
-	background-image: url('images/logo-xsmall.png');
-	background-repeat: no-repeat;
-	background-size: 76 79;
-	background-position: center center;
-	position: relative;
-	height: 90px;
-	line-height: 90px;
-}
-
-.site-name, .site-description {
-	font-size: 16px;
-}
-.site-name {
-	float: left;
-}
-.site-description {
-	float: right;
 }
 
 /* LOGIN PAGE */
@@ -236,58 +260,85 @@ input[type=submit] {
 }
 
 /* CONTENT */
-.content, .vital, .vital-overlay {
-	margin-top: 5px;
+#content {
+	margin-top: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#main-content {
+	position: relative;
+}
+#profile {
+	position: relative;
+}
+#myhealth {
+	position: relative;
+}
+.tile, .vital-overlay {
 	background: #FFF;
 	border-radius: 5px;
-	-webkit-box-shadow: 0px 2px 0px 0px #999;
-	box-shadow: 0px 2px 0px 0px #999;
+	-webkit-box-shadow: 0px 3px 0px 0px #BBB;
+	box-shadow: 0px 3px 0px 0px #BBB;
 }
-.content, .vital-overlay {
-	padding: 15px;
+.tile {
+	margin-top: 15px;
 }
-.content h2 {
+.tile, .vital-overlay {
+	padding: 20px;
+}
+.tile h2 {
 	margin-top: 2px;
 	margin-bottom: 10px;
 	font-size: 22px;
 	font-weight: bold;
 }
-.content p {
+.tile p {
 	font-size: 16px;
 	margin-bottom: 10px;
 	line-height: 1.4em;
 }
-#home, #profile, #vitals, #diagnosis {
-	position: absolute;
-	max-width: 1050px;
-	left: 15px;
-	right: 15px;
-	margin-left: 10px;
-	margin-right: 10px;
-}
-#home {
-	display: block;
-}
-#profile, #vitals, #diagnosis {
-	display: none;
-}
-#vitals {
 
+#main-content {
+	display: block;
+	float: left;
+	width: 670px;
+}
+
+#health-overview, #health-details {
+
+	padding: 10px;
+}
+#health-overview {
+	font-family: 'Amaranth', sans-serif;
+	display: block;
 	text-align: center;
+}
+.health-score-label {
+	font-size: 20px;
+}
+.health-score {
+	font-size: 60px;
+	color: #78BB66;
+}
+.health-score-commentary {
+	font-size: 16px;
+	color: #666;
+	margin-bottom: 15px;
+}
+#health-details {
+	display: none;
+	text-align: left;
 }
 
 /* NAVIGATION */
 #nav-menu {
-	left: 15px;
-	right: 15px;
+	position: relative;
 	border-radius: 5px;
-	padding-left: 5px;
 	background: #FFF;
-	-webkit-box-shadow: 0px 4px 0px 0px #999;
-	box-shadow: 0px 4px 0px 0px #999;
+	-webkit-box-shadow: 0px 4px 0px 0px #F8C100;
+	box-shadow: 0px 4px 0px 0px #F8C100;
 }
 ul.navigation {
-	padding: 0;
 	margin-bottom: 10px;
 }
 ul.navigation li {
@@ -295,6 +346,7 @@ ul.navigation li {
 	margin-bottom: auto;	
 }
 ul.navigation li a {
+	font-family: 'Amaranth', sans-serif;
 	margin-left: 0;
 	margin-right: 0;
 	display: inline-block;
@@ -304,89 +356,124 @@ ul.navigation li a {
 	background-size: 24px 24px;
 	padding-left: 45px;
 	padding-right: 15px;
-	text-transform: uppercase;
 	height: 46px;
-	line-height: 50px;
+	line-height: 46px;
+	font-size: 16px;
+}
+#health-nav-menu {
+	margin-top: 5px;
+}
+ul.health-navigation li {
+	display: inline-block;
+}
+ul.health-navigation li a {
+	text-decoration: none;
 	font-family: 'PT Sans', sans-serif;
-	font-weight: bold;
-	border-right-width: 1px;
-	border-right-style: solid;
-	border-right-color: #EEE;
-	font-size: 20px;
+	font-size: 14px;
+	padding: 6px 9px;
+	margin-right: 4px;
+	border-radius: 5px;
+
 }
 a.active-link {
-	background-color: #FBC500 !important;
+	background-color: #F8C100 !important;
 	color: #FFF;
 }
-a.nav-profile {
-	background-image: url('images/profile-icon.png');
+a.nav-myhealth {
+	background-image: url('images/myhealth-icon.png');
 }
-a.nav-profile-active {
-	background-image: url('images/profile-icon-selected.png');
+a.nav-myhealth.active-link {
+	background-image: url('images/myhealth-icon-selected.png');
 }	
-a.nav-vitals {
-	background-image: url('images/vitals-icon.png');
+a.nav-community {
+	background-image: url('images/community-icon.png');
 }
-a.nav-vitals-active {
-	background-image: url('images/vitals-icon-selected.png');
+a.nav-community.active-link {
+	background-image: url('images/community-icon-selected.png');
 }
-a.nav-diagnosis {
-	background-image: url('images/diagnosis-icon.png');
+
+/* Profile Block */
+
+.profile-info {
+	padding-left: 70px;
 }
-a.nav-diagnosis-active {
-	background-image: url('images/diagnosis-icon-selected.png');
+.profile-name {
+	font-family: 'Amaranth', sans-serif;
+	font-size: 28px;
+	margin-bottom: 5px;
+}
+.profile-content {
+	font-size: 14px;
+	font-family: "PT Sans", sans-serif;
+	color: #666;
 }
 /* Vitals Page */
+
+.vitals-intro {
+	margin-bottom: 15px;
+	font-size: 14px;
+	font-family: "PT Sans", sans-serif;
+	text-align: left;
+	color: #666;
+}
 
 .vital {
 	text-align: left;
 	display: inline-block;
-	height: 100px;
-	width: 240px;
+	width: 227px;
 	margin-bottom: 15px;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 0px;
+	margin-right: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	padding-left: 80px;
-	border-left-width: 6px;
+	padding-left: 60px;
+	border-left-width: 4px;
 	border-left-style: solid;
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #EEE;
+	border-top-color: #EEE;
+	border-bottom-color: #EEE;
 	background-color: #FFF;
-	background-size: 60px 60px, 40px 40px;
+	background-size: 39px 39px, 30px 30px;
 	background-repeat: no-repeat, no-repeat; 
-	background-position: 10 center, right top;"
+	background-position: 10 center, right top;
+	border-radius: 4px;
 }
 .vital-icon, .vital-icon-overlay {
 	float: left;
 }
-
 .vital-icon-overlay {
 	padding: 15px;
 }
 .vital-name {
-	margin-top: 25px;
-	font-size: 20px;
-	font-weight: bold;
+	font-family: 'Amaranth', sans-serif;
+	font-size: 16px;
+	margin-bottom: 3px;
 }
 .vital-value {
 	padding-top: 0px;
 }
 .vital-value span {
-	font-size: 20px;
+	font-size: 14px;
 	font-weight: normal;
+	font-family: "PT Sans", sans-serif;
 }
 .vital-overlay {
 	background-color: #FFF;
 	background-repeat: no-repeat; 
-	background-position: 25 25;
+	background-position: 16 16;
 	background-attachment: local;
-	background-size: 50px 50px;
+	background-size: 53px 53px;
 	display: none;
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
-	padding: 20px;
 	border-top-style: solid;
 	border-top-width: 6px;
 }
@@ -397,23 +484,18 @@ ul.vital-breakdown {
 }
 .vital-overlay-nav {
 	position: relative;
+	margin-top: 18px;
 }
-
 ul.vital-nav-menu li {
 	display: inline-block;
 }
 ul.vital-nav-menu li a {
-	width: 120px;
-	height: 60px;
-	line-height: 60px;
-	font-size: 20px;
-	padding: 10px;
-	margin-left: 10px;
+	font-size: 14px;
+	padding: 6px 9px;
+	margin-right: 10px;
 	text-decoration: none;
 	border-radius: 5px;
 	font-family: "PT Sans", sans-serif;
-	text-transform: uppercase;
-
 }
 a.vital-nav-item-active {
 	background-color: #EEE;
@@ -423,23 +505,23 @@ a.vital-nav-item-active {
 	position: absolute;
 	top: 10px;
 	right: 90px;
+	width: 120px;
+	font-family: "PT Sans", sans-serif;
+	font-size: 14px;
 }
-ul.subvital-nav-menu li {
-	display: inline-block;
-}
-ul.subvital-nav-menu li a {
+
+.subvital-menu a {
 	width: 120px;
 	height: 60px;
 	line-height: 60px;
-	font-size: 20px;
-	padding: 10px;
+	padding: 6px 9px;
 	margin-left: 10px;
 	text-decoration: none;
 	border-radius: 5px;
-	font-family: "PT Sans", sans-serif;
-	text-transform: uppercase;
 }
-a.vital-nav-item-active {
+.subvital-menu-label {
+}
+a.vital-nav-item-active, a.subvital-nav-item-active, a.health-active-link {
 	background-color: #EEE;
 	color: #000;
 }
@@ -454,24 +536,41 @@ a.vital-nav-item-active {
 	display: block;
 }
 .vital-overlay-name, .vital-overlay-date {
-	padding-left: 70px;
+	padding-left: 65px;
 }
 .vital-overlay-name {
-	font-size: 28px;
-	font-weight: bold;
-	margin-top: 0px;
+	font-family: 'Amaranth', sans-serif;
+	font-size: 24px;
+}
+.vital-overlay-explanation, .vital-overlay-recommendation {
+	text-align: left;
+}
+.vital-overlay-explanation h2, .vital-overlay-recommendation h2 {
+	color: #333;
+	font-size: 22px;
+	font-weight: normal;
+	margin-top: 10px`;
+}
+.vital-overlay-explanation p, .vital-overlay-recommendation p {
+	font-family: "PT Sans", sans-serif;
+	font-size: 14px;
+	color: #333;
 }
 .vital-overlay-date {
-	margin-top: 5px;
+	margin-top: 3px;
 	font-size: 14px;
-	color: #999;
+	color: #666;
 	font-family: 'PT Sans', sans-serif;
 }
 .vital-overlay-content {
+	font-family: 'Amaranth', sans-serif;
 	text-align: center;
-	margin-top: 13px;
+	margin-top: 10px;
 	font-size: 20px;
 	color: #666;
+}
+.vital-chart {
+	margin-top: 10px;
 }
 .vital-overlay-historical {
 	display: none;
@@ -536,27 +635,59 @@ a.vital-nav-item-active {
 .last-visit {
 	width: auto;
 	padding: 7px;
-	background: #FFF;
-	font-style: italic;
 	margin-top: 18px;
 	text-align: center;
 	font-size: 14px;
-}
-/* Profile Page */
-.patient-profile {
-}
-ul.patient-profile-items {
-	padding-left: 0;
-}
-ul.patient-profile-items li {
-	list-style: none;
+	color: #666;
 }
 
-/* Doctor Page */
-.kongkiat {
-	float: left; 
-	margin-right: 20px;
-	max-width: 80px;
+/* SIDEBAR */
+.side-content {
+	width: 310px;
+	display: block;
+	float: right;
+}
+.side-content p {
+	font-family: 'PT Sans', sans-serif;
+	font-size: 14px;
+	font-color: #999;
+	margin-bottom: 0;
+}
+.clinic-reminder {
+	padding-left: 45px;
+	background-image: url('images/clock-icon.png');
+	background-repeat: no-repeat;
+	background-position: 15px center;
+}
+.kongkiat-challenge h2 {
+	font-family: 'Amaranth', sans-serif;
+	margin-top: 12px;
+	margin-bottom: 30px;
+	padding-left: 70px;
+	font-weight: normal;
+	font-size: 18px;
+}
+.kongkiat-challenge {
+	background-image: url('images/kongkiat-icon.png');
+	background-repeat: no-repeat;
+	background-position: 15 15;
+}
+a.accept-challenge {
+	font-family: 'PT Sans', sans-serif;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 14px;
+	color: #333;
+	font-weight: bold;
+	background: #EEE;
+	border-radius: 5px;
+	padding: 6px 9px;
+	display: block;
+	width: 180px;
+	text-align: center;
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /* D3 Styles */
@@ -576,7 +707,9 @@ ul.patient-profile-items li {
 	stroke: #999;
 	shape-rendering: crispEdges;
 }
-
+.historical-text {
+	width: 20px;
+}
 .histogram-axis path,
 .histogram-axis line {
 	fill: none;
@@ -596,7 +729,7 @@ ul.patient-profile-items li {
   shape-rendering: crispEdges;
 }
 .histogram-axis text {
-	font-size: 10px;
+	font-size: 12px;
 	fill: #666;
 }
 .histogram-label {

@@ -8,18 +8,24 @@
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700|Amaranth:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div id="wrapper">
         <div id="header">
-            <div id="branding">
-                <div class="site-name">Cal Hospital OS</div>
-                <div class="site-description">Prototype v2.0</div>
-                <a href="/" class="link-span"></a>
-            </div>
             <div id="nav-menu">
+                <img src="static/css/images/logo-nav.png" class="nav-logo">
+                <img src="static/css/images/cog-icon.png" class="nav-cog">
                 <ul class="navigation">
-                    <li><a href="#" class="nav-profile">Profile</a>
-                    <li><a href="#" class="nav-vitals">Vitals</a>
-                    <li><a href="#" class="nav-diagnosis">Advice</a>
+                    <li><span class="site-name">Berkeley Hospital OS</span>
+                    <li><a href="/myhealth" class="nav-myhealth active-link">My Health</a>
+                    <li><a href="/community" class="nav-community">Community</a>
                 </ul>
             </div>
         </div>

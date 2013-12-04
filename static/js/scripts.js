@@ -1,15 +1,15 @@
 //GLOBAL
 // Variables used across this file
-var currentContentID = '#home';
+var currentContentID = '#health-overview';
 
 // NAVIGATION
 // Handles menu item clicks and page navigation
-$( 'ul.navigation li a').click(function() {
+$( 'ul.health-navigation li a').click(function() {
 	// Only do stuff if the button clicked isn't already active
-	if (!$(this).hasClass('active-link')) {
+	if (!$(this).hasClass('health-active-link')) {
 		// Set the previously-active button to inactive
 		$(this).parent().parent().children().each(function() {
-			$(this).children().removeClass('active-link');
+			$(this).children().removeClass('health-active-link');
 			var className = $(this).children().attr('class');
 			var activeSuffix = '-active';
 			if (className.length > activeSuffix.length) {
@@ -28,10 +28,10 @@ $( 'ul.navigation li a').click(function() {
 		$(this).removeClass(buttonName);
 		var activeButtonName = buttonName + '-active';
 		$(this).addClass(activeButtonName);
-		$(this).addClass('active-link');
+		$(this).addClass('health-active-link');
 		// Show the new content
 		newContentID = '#' + buttonName.substring(4, buttonName.length);
-		$( currentContentID ).fadeOut(500);
+		$( currentContentID ).fadeOut(0);
 		$( newContentID ).fadeIn(500);	
 	}
 });
@@ -40,31 +40,51 @@ $( 'ul.navigation li a').click(function() {
 
 // Vital overlay navigation
 $( 'ul.vital-nav-menu li a').click(function() {
+	vitalNavigate($(this), "vital");
+});
+
+$( '.subvital-menu a').click(function() {
+	vitalNavigate($(this), "subvital");
+});
+
+$( 'a.accept-challenge').click(function() {
+	$( '#dark-bg' ).fadeIn();
+	$( '.popup' ).fadeIn();
+});
+
+function vitalNavigate(el, str) {
 	// Only do stuff if the button clicked isn't already active
-	if (!$(this).hasClass('vital-nav-item-active')) {
+	if (!el.hasClass(str + '-nav-item-active')) {
 		// Make previously-active button inactive
-		var newClassName = $(this).attr("class");
-		var vital;
-		$(this).parent().parent().children().each(function() {
+		var newClassName = el.attr("class");
+		var oldVital;
+		el.parent().parent().children().each(function() {
 			if ($(this).children().attr("class") != newClassName) {
-				$(this).children().removeClass('vital-nav-item-active');
-				var className = $(this).children().attr("class");
-				className = className.split(' ');
-				vital = className[0];
-				className = '.' + className[1].substring(0, className[1].length-5);
-				oldClassName = className;
+				if ($(this).html() != "Page:") {
+					$(this).children().removeClass(str + '-nav-item-active');
+					var className = $(this).children().attr("class");
+					className = className.split(' ');
+					oldVital = className[0];
+					className = '.' + className[1].substring(0, className[1].length-5);
+					oldClassName = className;
+				}
 			}
 		});
 		// Get class name of element link points to
-		var className = $(this).attr("class");
+		var className = el.attr("class");
 		className = className.split(' ');
 		// Make clicked button active
-		$(this).addClass('vital-nav-item-active');
+		el.addClass(str + '-nav-item-active');
+		var newVital = className[0];
 		className = '.' + className[1].substring(0, className[1].length - 5);
-		$( '.' + vital + className ).fadeIn(500);
-		$( '.' + vital + oldClassName).fadeOut(500);
+		$( '.' + newVital + className ).fadeIn(500);
+		$( '.' + oldVital + oldClassName).fadeOut(0);
+		if (str == "subvital") {
+			$( '.' + newVital + '.vital-overlay-nav' ).fadeIn(500);
+			$( '.' + oldVital + '.vital-overlay-nav' ).fadeOut(0);
+		}
 	}
-});
+}
 
 // D3 Variables
 var xScaleFunctions = {};
@@ -79,7 +99,7 @@ var padding = 16;
 var chartPaddingBottom = 24;
 var smileyWidth = 33;
 var smileyHeight = 36;
-var margin = {top: 20, right: padding, bottom: 34, left: 44};
+var margin = {top: 20, right: 40, bottom: 40, left: 40};
 var histogramHeight = 350 - margin.top - margin.bottom;
 var histogramWidth = w - margin.left - margin.right;
 
@@ -132,7 +152,8 @@ function setRiskLevels(vitals) {
 
 function setRiskLevel(vital, risk) {
 	$('span.' + vital.id).addClass(risk);
-	$('.vital-stats.' + vital.id).addClass(risk);
+	$('.vital-chart.' + vital.id).addClass(risk);
+	$('.vital-histogram.' + vital.id).addClass(risk);
 	$('.vital-overlay.' + vital.id).addClass(risk + "-border-top");
 	$('.vital.' + vital.id).addClass(risk + "-border-left");
 	rindex=0;
@@ -148,7 +169,7 @@ $( ".vital" ).click(function() {
 	var vo = $(this).children('.vital-overlay');
     vo.fadeIn(500, function() {
     	voc = vo.children('.vital-overlay-content');
-    	classes = voc.children('.vital-stats').attr('class').split(' ');
+    	classes = voc.children('.vital-chart').attr('class').split(' ');
     	vital = classes[1];
     	vitalRisk = classes[2];
     	vov = voc.children('.vital-overlay-value');
@@ -168,6 +189,12 @@ $( ".close-overlay" ).click(function() {
 	//$(this).parent().children('.vital-overlay-content').show();
 	//$(this).parent().children('.vital-overlay-historical').hide();
 	$(this).parent().fadeOut(300);
+	event.stopPropagation();
+});
+
+$( ".close-popup" ).click(function() {
+	$(this).parent().fadeOut(300);
+	$('#dark-bg').fadeOut(300);
 	event.stopPropagation();
 });
 
@@ -233,7 +260,7 @@ function addSmileyToChart(vitalId, subVitalName) {
 	d3.selectAll('.' + vitalId + ' svg.chart' + subVitalClassName).each(function() {
 		svg = d3.select(this);
 		svg.append("image")
-			.attr("x", padding - smileyWidth/2)
+			.attr("x", margin.left - smileyWidth/2)
 			.attr("y", barYPos - smileyHeight)
 			.attr("xlink:href", imgUrl)
 			.attr("src", imgUrl)
@@ -280,10 +307,10 @@ function animateHistogramBars(svg, yScale) {
 		.transition()
 		.duration(1000)
     	.attr("height", function(d) {
-        	return histogramHeight - yScale(d.y / dataset.length);
+        	return histogramHeight - yScale(d.y);
     	})
     	.attr("y", function(d) {
-    		return yScale(d.y / dataset.length);
+    		return yScale(d.y);
     	});
 }
 
@@ -292,7 +319,7 @@ function animateHistogramPerson(bar, yScale) {
 		.transition()
 		.duration(1000)
 		.attr("y", function(d) {
-			return yScale(d.y / dataset.length)-personHeight;
+			return yScale(d.y)-personHeight;
 		});
 }
 
@@ -306,13 +333,14 @@ function loadVitalVisuals() {
 		for (j = 0; j < vital.ranges.length; j++) {
 			ranges = vital.ranges[j];
 			loadVitalCharts(vital, ranges);
-		}
-		for (j = 0; j < vital.ranges.length; j++) {
-			ranges = vital.ranges[j];
 			loadVitalHistograms(vital, ranges);
+			loadVitalHistorical(vital, ranges)
 		}
-		loadVitalHistorical(vital)
-
+		// for (j = 0; j < vital.ranges.length; j++) {
+		// 	ranges = vital.ranges[j];
+		// 	loadVitalHistograms(vital, ranges);
+		// }
+		// loadVitalHistorical(vital, ranges)
 	}
 }
 
@@ -327,7 +355,7 @@ function loadVitalCharts(vital, ranges) {
     	subVital = '.' + ranges.name
     }
 
-	var svg = d3.select('.vital-stats.' + vital.id + subVital)
+	var svg = d3.select('.vital-chart.' + vital.id + subVital)
 				.append("svg")
 				.attr("width", w)
 				.attr("height", h)
@@ -335,11 +363,11 @@ function loadVitalCharts(vital, ranges) {
 
 	var xScalePos = d3.scale.linear()
 							.domain([minData, maxData])
-							.range([padding, w - padding]);
+							.range([margin.left, w - margin.left]);
 
 	var xScaleVal = d3.scale.linear()
 							.domain([0, maxData - minData])
-							.range([padding, w - padding]);
+							.range([margin.left, w - margin.left]);
 
 	xScaleFunctions[vital.id + '-' + ranges.name] = xScalePos;
 
@@ -366,11 +394,11 @@ function loadVitalCharts(vital, ranges) {
 			return d[1];
 		});
 
-	svg.append("text")
-		.attr("class", "vital-stats-label")
-		.attr("x", padding)
-		.attr("y", barYPos - 5)
-	    .text(ranges.name);
+	// svg.append("text")
+	// 	.attr("class", "vital-stats-label")
+	// 	.attr("x", padding)
+	// 	.attr("y", barYPos - 5)
+	//     .text(ranges.name);
 
 	var xAxis = d3.svg.axis()
 						.scale(xScalePos)
@@ -391,6 +419,7 @@ function loadVitalHistograms(vital, ranges) {
 	dataset = vitalData[vital.id + "-" + ranges.name];
 	var formatCount = d3.format(",.0f");
 	var formatAsPercentage = d3.format("1%");
+	//var formatAsThousands = d3.format("1000r")
 
     minData = d3.min(dataset);
     maxData = d3.max(dataset);
@@ -409,11 +438,16 @@ function loadVitalHistograms(vital, ranges) {
         .bins(xData.ticks(15))
         (dataset);
 
+    // var y = d3.scale.linear()
+    //     .domain([0, d3.max(data, function(d) { 
+    //         return d.y / dataset.length; 
+    //     })])
+    //     .range([histogramHeight, 0]);
     var y = d3.scale.linear()
-        .domain([0, d3.max(data, function(d) { 
-            return d.y / dataset.length; 
-        })])
-        .range([histogramHeight, 0]);
+    		.domain([0, d3.max(data, function(d) {
+    			return d.y;
+    		})])
+    		.range([histogramHeight, 0]);
 
     yScaleFunctions[vital.id + '-' + ranges.name] = y;
 
@@ -425,14 +459,14 @@ function loadVitalHistograms(vital, ranges) {
         .scale(y)
         .orient("left")
         .ticks(4)
-        .tickFormat(formatAsPercentage);
+        //.tickFormat(formatAsThousands);
 
     var subVital = '';
     if (ranges.name != "") {
     	subVital = '.' + ranges.name
     }
 
-    var svg = d3.select('.vital-stats.' + vital.id + subVital).append("svg")
+    var svg = d3.select('.vital-histogram.' + vital.id + subVital).append("svg")
         .attr("width", histogramWidth + margin.left + margin.right)
         .attr("height", histogramHeight + margin.top + margin.bottom)
         .attr("class", "histogram " + ranges.name)
@@ -478,7 +512,7 @@ function loadVitalHistograms(vital, ranges) {
         .attr("class", "x histogram-label")
         .attr("text-anchor", "middle")
         .attr("x", histogramWidth / 2)
-        .attr("y", histogramHeight + 30)
+        .attr("y", histogramHeight + 35)
         .text(ranges.name.toUpperCase() + " " + vital.name.toUpperCase());
 
     svg.append("g")
@@ -487,19 +521,20 @@ function loadVitalHistograms(vital, ranges) {
 
     svg.append("text")
         .attr("class", "y histogram-label")
-        .attr("x", -histogramHeight + 12)
-        .attr("y", -33)
-        .text("PERCENT OF PEOPLE LIKE YOU");
+        .attr("dy", ".71em")
+        .attr("y", 6)
+	    .style("text-anchor", "end")
+        .text("NUMBER OF PEOPLE LIKE YOU");
 
     addPersonToHistogram(bar, vital.id, ranges.name);
 
 }
 
-function loadVitalHistorical(vital) {
+function loadVitalHistorical(vital, subVital) {
 
-	var margin = {top: 20, right: 80, bottom: 30, left: 50},
-	    width = 800 - margin.left - margin.right,
-	    height = 500 - margin.top - margin.bottom;
+	var margin = {top: 20, right: 30, bottom: 30, left: 40},
+	    width = 620 - margin.left - margin.right,
+	    height = 350 - margin.top - margin.bottom;
 
 	var parseDate = d3.time.format("%Y%m%d").parse;
 
@@ -513,7 +548,8 @@ function loadVitalHistorical(vital) {
 
 	var xAxis = d3.svg.axis()
 	    .scale(x)
-	    .orient("bottom");
+	    .orient("bottom")
+	    .tickFormat(d3.time.format("%b"));
 
 	var yAxis = d3.svg.axis()
 	    .scale(y)
@@ -524,13 +560,13 @@ function loadVitalHistorical(vital) {
 	    .x(function(d) { return x(d.date); })
 	    .y(function(d) { return y(d.vital); });
 
-	var svg = d3.select(".vital-overlay-historical." + vital.id).append("svg")
+	var svg = d3.select(".vital-overlay-historical." + vital.id + "-" + subVital.name).append("svg")
 	    .attr("width", width + margin.left + margin.right)
 	    .attr("height", height + margin.top + margin.bottom)
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	d3.tsv("static/data/historical.tsv", function(error, data) {
+	d3.tsv("static/data/" + vital.id + "-" + subVital.name + ".tsv", function(error, data) {
 	  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
 	  data.forEach(function(d) {
@@ -566,7 +602,7 @@ function loadVitalHistorical(vital) {
 	      .attr("y", 6)
 	      .attr("dy", ".71em")
 	      .style("text-anchor", "end")
-	      .text("BMI - Body Mass Index (kg/m²)");
+	      .text(subVital.name + " " + vital.name + " (" + vital.unit + ")");
 
 	  var city = svg.selectAll(".city")
 	      .data(cities)
@@ -578,12 +614,13 @@ function loadVitalHistorical(vital) {
 	      .attr("d", function(d) { return line(d.values); })
 	      .style("stroke", function(d) { return color(d.name); });
 
-	  city.append("text")
-	      .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-	      .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.vital) + ")"; })
-	      .attr("x", 3)
-	      .attr("dy", ".35em")
-	      .text(function(d) { return d.name; });
+	  // city.append("text")
+	  //     .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+	  //     .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.vital) + ")"; })
+	  //     .attr("x", 3)
+	  //     .attr("dy", ".35em")
+	  //     .attr("width", "20px")
+	  //     .text(function(d) { return d.name; });
 	});
 }
 
@@ -636,6 +673,7 @@ function getVitalRanges() {
 			{ 	
 				id: 'bloodpressure',
 				name: 'blood pressure',
+				unit: 'mmHg',
 				ranges:
 					[
 						{
@@ -673,6 +711,7 @@ function getVitalRanges() {
 			{
 				id: 'cholesterol',
 				name: 'cholesterol',
+				unit: 'mg/dL',
 				ranges:
 					[
 						{
@@ -704,14 +743,15 @@ function getVitalRanges() {
 			{
 				id: 'bmi',
 				name: 'bmi',
+				unit: 'kg/m²',
 				ranges:
 					[
 						{
 							name: '',
 							value: 
 								[
-									[17, "#F4A731",'medium-risk'], [22, "#78BB66",'low-risk'], 
-									[25, "#F4A731",'medium-risk'], [700, "#ED5A69",'high-risk']
+									[18.5, "#F4A731",'medium-risk'], [25, "#78BB66",'low-risk'], 
+									[30, "#F4A731",'medium-risk'], [700, "#ED5A69",'high-risk']
 								]
 						}
 					]

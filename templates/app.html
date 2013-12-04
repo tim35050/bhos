@@ -1,89 +1,120 @@
 {% include 'header.html' %}
-<div id="home" class="content">
-    <h2>Welcome to Berkeley Hospital OS!</h2>
-    <p>We provide you with access to your medical records, then we help you understand them. Our goal is for you to become informed about your health and change your behavior to lead a healthier life.</p>
-</div>
-<div id="profile" class="content">
-    <div class="patient-profile">
-        <!-- <img src="static/images/male-avatar.png" class="img-avatar" /> -->
-        <ul class="patient-profile-items">
-            <li>
-                <label for="patient-name">Name:</label> {{ context.name }}
-            </li>
-            <li>
-                <label for="patient-gender">Gender:</label> {{ context.gender }}
-            <li>
-                <label for="patient-age">Birthday:</label> {{ context.birthday }}
-            </li>
-            <li>
-                <label for="patient-height">Height:</label> {{ context.height }}cm
-            </li>
-            <li>
-                <label for="patient-weight">Weight:</label> {{ context.weight }}kg
-            </li>
-        </ul>
-    </div>
-</div>
-<div id="vitals">
-    {% for vital in context.vitals %}
-    <div class="vital {{ vital.vital_id }}" style="background-image: url('static/css/images/{{ vital.vital_icon_name }}'), url('static/css/images/expand.png');">
-        <div class="vital-name">{{ vital.vital_name }}</div>
-        <div class="vital-value">
-            <span class="{{ vital.vital_id }}">
-            	{% for vital_value in vital.vital_values -%}
-            		{{ vital_value }}
-	           		{%- if not loop.last -%}
-	           			{{ vital.vital_values_sep|safe }}
-	           		{%- endif -%}
-            	{%- endfor %}
-            	{{ vital.vital_unit|safe }}
-            </span>
-        </div>
-        <div class="vital-overlay {{ vital.vital_id }}" style="background-image: url('static/css/images/{{ vital.vital_icon_name }}');">
-            <div class="vital-overlay-name">{{ vital.vital_name }}</div>
-            <div class="vital-overlay-date">Updated September 30<sup>th</sup>, 2013</div>
-            <div class="vital-overlay-nav">
-                <ul class="vital-nav-menu">
-                    <li><a href="#" class="{{ vital.vital_id }} vital-overlay-content-link vital-nav-item-active">Overview</a>
-                    <li><a href="#" class="{{ vital.vital_id }} vital-overlay-historical-link">Historical</a>
-                </ul>
-            </div>
-            {% for sub_vital in vital.vital_subs %}
-            <div class="vital-overlay-content {{ vital.vital_id }}-{{ sub_vital.lower() }}">
-            	Your {{ sub_vital.lower() }} {{ vital.vital_id }} is 
-            	<span class="vital-overlay-value {{ vital.vital_id }} {{ sub_vital.lower() }}">
-            		<span class="{{ vital.vital_id}}-{{ sub_vital.lower() }}-value-{{ loop.index0 }}">{{ vital.vital_values[loop.index0] }}</span>
-            	</span> {{ vital.vital_unit|safe }}
-                <div class="vital-stats {{ vital.vital_id }} {{ sub_vital.lower() }}"></div>
-<!--                 <div class="population-stats">
-                    <p>You have <span class="high-risk">worse</span> cholesterol than <span class="high-risk">84%</span> of the Thai population</p>
+<div id="content">
+    <div id="main-content">
+        <div id="profile" class="tile left-content" style="background-image: url('static/css/images/profile-pic.png'); background-position: 15px center; background-repeat: no-repeat;">
+            <div class="profile-info">
+                <div class="profile-name">
+                    Timothy Meyers
                 </div>
-                <ul class="vital-breakdown">
-                    <li>
-                        <label>Details:</label>
-                        <div class="vital-value-explanation">When too much LDL (bad) cholesterol circulates in the blood, it can slowly build up in the inner walls of the arteries that feed the heart and brain <a href="#">[more]</a></p>
-                    </li>
-                </ul> -->
+                <div class="profile-content">
+                    Male, 26 years old, 173cm, 75kg
+                </div>
             </div>
-            <div class="vital-overlay-historical {{ vital.vital_id }} {{ sub_vital.lower() }}"></div>
-            {% endfor %}
-            <div class="subvital-menu">
-                <ul class="subvital-nav-menu">
-                {% for subVital in vital.vital_subs %}
-                    <li><a href="#" class="{{ subVital }}-content-link subvital-nav-item-active">{{ subVital }}</a>
-                {% endfor %}
+        </div>
+        <div id="myhealth" class="tile left-content">
+            <div id="health-nav-menu">
+                <ul class="health-navigation">
+                    <li><a href="#" class="nav-health-overview health-active-link">Overview</a>
+                    <li><a href="#" class="nav-health-details">Details</a>
                 </ul>
             </div>
-            <div class="close-overlay"></div>
+            <div id="health-overview">
+                <div class="health-score-label">Your total health score is</div>
+                <div class="health-score">86</div>
+                <div class="health-score-commentary">
+                    You are a very healthy and handsome young man!  Stay at this level of health and you will live a long and wonderful life!
+                </div>
+                <div class="fb-share-button" data-href="http://bhos.tim-meyers.com/images/health-score.png" data-type="button"></div>
+            </div>
+            <div id="health-details">
+                <div class="vitals-intro">
+                    Below are your vitals.  They are very important parts of your health.  Click on each to learn more about what they are and how healthy you are!
+                </div>
+                {% for vital in context.vitals %}
+                <div class="vital {{ vital.vital_id }}" style="background-image: url('static/css/images/{{ vital.vital_icon_name }}'), url('static/css/images/expand.png');">
+                    <div class="vital-name">{{ vital.vital_name }}</div>
+                    <div class="vital-value">
+                        <span class="{{ vital.vital_id }}">
+                            {% for vital_value in vital.vital_values -%}
+                                {{ vital_value }}
+                                {%- if not loop.last -%}
+                                    {{ vital.vital_values_sep|safe }}
+                                {%- endif -%}
+                            {%- endfor %}
+                            {{ vital.vital_unit|safe }}
+                        </span>
+                    </div>
+                    <div class="vital-overlay {{ vital.vital_id }}" style="background-image: url('static/css/images/{{ vital.vital_icon_name }}');">
+                        <div class="vital-overlay-name">{{ vital.vital_name }}</div>
+                        <div class="vital-overlay-date">Updated September 30<sup>th</sup>, 2013</div>
+                        {% for sub_vital in vital.vital_subs %}
+                        <div class="vital-overlay-nav {{ vital.vital_id }}-{{ sub_vital.lower() }}"
+                            {%- if not loop.first -%}
+                                style="display: none;"
+                            {%- endif -%}
+                            >
+                            <ul class="vital-nav-menu">
+                                <li><a href="#" class="{{ vital.vital_id }}-{{ sub_vital.lower() }} vital-overlay-content-link vital-nav-item-active">Recent</a>
+                                <li><a href="#" class="{{ vital.vital_id }}-{{ sub_vital.lower() }} vital-overlay-historical-link">Historical</a>
+                            </ul>
+                        </div>
+                        <div class="vital-overlay-content {{ vital.vital_id }}-{{ sub_vital.lower() }}"
+                            {%- if not loop.first -%}
+                                style="display: none;"
+                            {%- endif -%}
+                            >
+                            Your {{ sub_vital.lower() }} {{ vital.vital_id }} is 
+                            <span class="vital-overlay-value {{ vital.vital_id }} {{ sub_vital.lower() }}">
+                                <span class="{{ vital.vital_id}}-{{ sub_vital.lower() }}-value-{{ loop.index0 }}">{{ vital.vital_values[loop.index0] }}</span>
+                            </span> {{ vital.vital_unit|safe }}
+                            <div class="vital-chart {{ vital.vital_id }} {{ sub_vital.lower() }}"></div>
+                            <img src="static/css/images/fb-share.png">
+                            <div class="vital-overlay-explanation">
+                                <h2>Explanation</h2>
+                                <p>{{ vital.vital_definitions[loop.index0] }}</p>
+                                <p>The graph below shows the {{ sub_vital.lower() }} {{ vital.vital_name.lower() }} level across the Thai population for your age, gender, and weight.  The higher the bar, the more people in Thailand have that {{ sub_vital.lower() }} {{ vital.vital_name.lower() }} level.  You want to be on a high bar, because that is where most people are.  If you are on a low bar, you are alone and not healthy.</p>
+                            </div>
+                            <div class="vital-histogram {{ vital.vital_id }} {{ sub_vital.lower() }}"></div>
+                            <div class="vital-overlay-recommendation">
+                                <h2>Recommendation</h2>
+                                <p>{{ vital.vital_recommendation }}</p>
+                            </div>
+                        </div>
+                        <div class="vital-overlay-historical {{ vital.vital_id }}-{{ sub_vital.lower() }}"></div>
+                        {% endfor %}
+                        <div class="subvital-menu">
+                            <span class="subvital-menu-label">Page:</span>
+                            {% for subVital in vital.vital_subs %}
+                                <span><a href="#" 
+                                    class="{{ vital.vital_id }}-{{ subVital.lower() }} vital-overlay-content-link 
+                                {%- if loop.first %}
+                                    subvital-nav-item-active
+                                {% endif -%}">{{ loop.index }}</a></span>
+                            {% endfor %}
+                            
+                        </div>
+                        <div class="close-overlay"></div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="last-visit">
+                    Last updated September 25th, 2013
+                </div>
+            </div>
         </div>
     </div>
-    {% endfor %}
-    <div class="last-visit">
-        Vitals last updated September 25th, 2013
+    <div class="side-content">
+        <div class="clinic-reminder tile">
+            <p>Visit clinic in 2 months and 10 days</p>
+        </div>
+        <div class="kongkiat-challenge tile">
+            <h2>Dr. Kongkiat's Challenge</h2>
+            <p>"You have high cholesterol.  You need to eat more vegetables and less fatty foods.  I challenge you to spend at least 3 days a week with this new diet.  You are due to return to the clinic for another checkup in 2 months and 10 days."</p>
+            <a href="#" class="accept-challenge">accept the challenge &#8227;</a>
+        </div>
+        <div class="advertisement tile">
+            <p>ADVERTISEMENT</p>
+        </div>
     </div>
-</div>
-<div id="diagnosis" class="content">
-    <img src="static/images/kongkiat.jpeg" class="kongkiat" />
-    <p>"You have <b>high cholesterol</b>.  This is not yet dangerous at your age, but as you become older you will be more susceptable to developing cardiovascular disease.  You need to reduce your fat intake by eating more vegetables and less greasy foods."</p>
 </div>
 {% include 'footer.html' %}

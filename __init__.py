@@ -99,24 +99,30 @@ def get_app_context():
 	# Assume 4 vitals for now
 
 	vital = {}
+	vital['vital_id'] = 'cholesterol'
+	vital['vital_name'] = 'Cholesterol'
+	vital['vital_subs'] = ['Total', 'LDL']
+	vital['vital_icon_name'] = 'cholesterol-icon.png'
+	vital['vital_values'] = [242, 170]
+	vital['vital_values_sep'] = '/'
+	vital['vital_unit'] = 'mg/dL'
+	vital['vital_definitions'] = ['Cholesterol is a lipid (fat) produced by the liver.  Having a high total cholesterol can lead to cardiovascular disease and stroke.  It is recommended to have a total cholesterol level below 200 mg/dL.', 'LDL cholesterol collects in the walls of blood vessels, causing the blockages of atherosclerosis. Higher LDL cholesterol levels put you at greater risk for a heart attack from a sudden blood clot in an artery narrowed by atherosclerosis']
+	vital['vital_recommendation'] = 'Your cholesterol is unhealthy.  You need to eat more vegetables and less fatty foods.  Try to spend at least 3 days every week with this new diet.  Please follow our recommendation and come back to the clinic in 2 months and 11 days.'
+
+ 	vitals.append(vital)
+
+	vital = {}
 	vital['vital_id'] = 'bmi'
-	vital['vital_name'] = 'BMI'
+	vital['vital_name'] = 'Body Mass Index (BMI)'
 	vital['vital_subs'] = ['']
 	vital['vital_icon_name'] = 'bmi-icon.png'
 	vital['vital_values'] = [27] #[21.26]
 	vital['vital_values_sep'] = ''
 	vital['vital_unit'] = 'kg/m&#178;'
-	vitals.append(vital)
+	vital['vital_definitions'] = ['BMI, or body mass index, is a calculation used to find out if a person is underweight, normal weight, overweight, or obese.  Having a high BMI can indicate that you are obese.  It is recommended to have a BMI below 25 kg/m&#178;.']
+	vital['vital_recommendation'] = 'Your BMI is unhealthy.  You need to eat more vegetables and less fatty foods.  Try to spend at least 3 days every week with this new diet.  Please follow our recommendation and come back to the clinic in 2 months and 11 days.'
 
-	vital = {}
-	vital['vital_id'] = 'cholesterol'
-	vital['vital_name'] = 'Cholesterol'
-	vital['vital_subs'] = ['Total', 'LDL']
-	vital['vital_icon_name'] = 'cholesterol-icon.png'
-	vital['vital_values'] = [230, 136]
-	vital['vital_values_sep'] = '/'
-	vital['vital_unit'] = 'mg/dL'
- 	vitals.append(vital)
+	vitals.append(vital)
 
  # 	vital = {}
 	# vital['vital_id'] = 'bloodglucose'
@@ -135,6 +141,8 @@ def get_app_context():
 	vital['vital_values'] = [110, 70] #[139, 94]
 	vital['vital_values_sep'] = '/'
 	vital['vital_unit'] = 'mmHg'
+	vital['vital_definitions'] = ['Systolic blood pressure measures the amount of pressure that blood exerts on arteries and vessels while the heart is beating.  High systolic blood pressure, or hypertension, increases the risk of heart disease and stroke. Hypertension risk factors include obesity, drinking too much alcohol, smoking, and family history. It is recommended to have a systolic blood pressure below 120 mmHg.', 'Diastolic blood pressure is the pressure that is exerted on the walls of the various arteries around the body in between heart beats when the heart is relaxed. High systolic blood pressure, or hypertension, increases the risk of heart disease and stroke. Hypertension risk factors include obesity, drinking too much alcohol, smoking, and family history.  It is recommended to have a diastolic blood pressure below 80 mmHg.']
+	vital['vital_recommendation'] = 'Your blood pressure is healthy!  You are eating foods with an appropriate level of salt.'
  	vitals.append(vital)
 
 	context = {}
