@@ -20,24 +20,28 @@ def index():
 	# name: Timothy Meyers
 	#date = {"year":2013,"month":1,"dayOfMonth":2,"hourOfDay":13,"minute":46,"second":45}
 	#add_data('Pov1SfSKlz', 'DtQQwTwTEP', '78', date)
-	return render_template('index.html')
+	#if 'careId' in session:
+		#return redirect(url_for('myhealth'))
+	#else:
+		return render_template('index.html')
 
 @app.route('/login', methods=['POST'])
 def login():
 	if request.method == 'POST':
 		if valid_login(request.form['email'], request.form['password']):
-			result = get_user_login(request.form['email'], request.form['password'])
+			#result = get_user_login(request.form['email'], request.form['password'])
+			result = {'careId': 1}
 			if 'careId' in result:
 				careId = result['careId']
 				session['careId'] = careId
-				return redirect(url_for('myapp'))
+				return redirect(url_for('myhealth'))
 			else:
 				error = 'Invalid username/password'
 				return render_template('index.html', error=error)
 
 
-@app.route('/app')
-def myapp():
+@app.route('/myhealth')
+def myhealth():
 	if 'careId' in session:
 		context = get_app_context()
 		careId = session['careId']
@@ -60,6 +64,15 @@ def myapp():
 		context['height'] = 177.8
 
 		return render_template('app.html', context = context)
+	else:
+		return render_template('index.html')
+
+@app.route('/community')
+def community():
+	if 'careId' in session:
+		return render_template('community.html')
+	else:
+		return render_template('index.html')
 
 def get_user_login(username, password):
 	rips = RequestsIPS()

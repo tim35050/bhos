@@ -1,6 +1,6 @@
 {% include 'header.html' %}
 <div id="content">
-    <div id="main-content">
+    <div id="main-content" class="left">
         <div id="profile" class="tile left-content" style="background-image: url('static/css/images/profile-pic.png'); background-position: 15px center; background-repeat: no-repeat;">
             <div class="profile-info">
                 <div class="profile-name">
@@ -71,7 +71,7 @@
                             <img src="static/css/images/fb-share.png">
                             <div class="vital-overlay-explanation">
                                 <h2>Explanation</h2>
-                                <p>{{ vital.vital_definitions[loop.index0] }}</p>
+                                <p>{{ vital.vital_definitions[loop.index0]|safe }}</p>
                                 <p>The graph below shows the {{ sub_vital.lower() }} {{ vital.vital_name.lower() }} level across the Thai population for your age, gender, and weight.  The higher the bar, the more people in Thailand have that {{ sub_vital.lower() }} {{ vital.vital_name.lower() }} level.  You want to be on a high bar, because that is where most people are.  If you are on a low bar, you are alone and not healthy.</p>
                             </div>
                             <div class="vital-histogram {{ vital.vital_id }} {{ sub_vital.lower() }}"></div>
@@ -103,7 +103,7 @@
             </div>
         </div>
     </div>
-    <div class="side-content">
+    <div class="side-content right">
         <div class="clinic-reminder tile">
             <p>Visit clinic in 2 months and 10 days</p>
         </div>
@@ -112,8 +112,8 @@
             <p>"You have high cholesterol.  You need to eat more vegetables and less fatty foods.  I challenge you to spend at least 3 days a week with this new diet.  You are due to return to the clinic for another checkup in 2 months and 10 days."</p>
             <a href="#" class="accept-challenge">accept the challenge &#8227;</a>
         </div>
-        <div class="advertisement tile">
-            <p>ADVERTISEMENT</p>
+        <div class="advertisement">
+            <img src="static/css/images/ad-bloodglucose.png">
         </div>
     </div>
 </div>

@@ -110,7 +110,7 @@ ul li {
 	position: relative;
 	padding-left: 15px;
 	padding-right: 15px;
-	max-width: 1050px;
+	width: 1050px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -206,29 +206,58 @@ body.login {
 	margin-bottom: 20px;
 	margin-top: 0;
 }
-form label, input {
+form.form-community-post {
+	margin-top: 15px;
+}
+form.form-community-post input {
+	display: inline-block;
+	vertical-align: top;
+	height: 50px;
+	background: #FFF;
+	border-width: 0px;
+	font-size: 16px;
+    border-radius: 5px;
+	padding: 5px;
+}
+form.form-community-post .post-text {
+	padding-left: 15px;
+	width: 585px;
+	margin-right: 10px;
+}
+form.form-community-post input[type=submit] {
+	-webkit-box-shadow: 0px 3px 0px 0px #FF7373;
+	box-shadow: 0px 3px 0px 0px #FF7373;
+	text-transform: uppercase;
+	padding: 10px;
+	width: 70px;
+	height: 47px;
+}
+
+form.form-login label, form.form-login input,
+form.form-challenge label, form.form-challenge input {
 	width: 100%;
 }
 
-form label {
+form.form-login label,
+form.form-challenge label {
 	margin-bottom: 5px;
 	font-style: none;
 	display: block;
 	color: #666;
 }
-form input {
+form.form-login input,
+form.form-challenge input {
 	display: block;
 	height: 50px;
 	margin-bottom: 10px;
 	background: #FFF;
-	border-color: #DDD;
-	border-width: 1px;
-	border-style: solid;
+	border-width: 0px;
 	font-size: 16px;
     border-radius: 5px;
 	padding: 5px;
 }
-input[type=submit] {
+form.form-login input[type=submit],
+form.form-challenge input[type=submit] {
 	color: #333;
     border: 0;
    	margin-top: 15px;
@@ -297,11 +326,16 @@ input[type=submit] {
 	margin-bottom: 10px;
 	line-height: 1.4em;
 }
+.advertisement {
+	margin-top: 15px;
+}
 
 #main-content {
 	display: block;
-	float: left;
 	width: 670px;
+}
+.left {
+	float: left;
 }
 
 #health-overview, #health-details {
@@ -645,6 +679,8 @@ a.vital-nav-item-active, a.subvital-nav-item-active, a.health-active-link {
 .side-content {
 	width: 310px;
 	display: block;
+}
+.right {
 	float: right;
 }
 .side-content p {
@@ -688,6 +724,99 @@ a.accept-challenge {
 	margin-top: 15px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+/* COMMUNITY */
+#stream-myactivity, 
+#stream-bloodglucose, 
+#stream-bloodpressure, 
+#stream-bmi {
+	display: none;
+}
+.stream-categories, .stream-my-activity {
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 2px;
+	padding-bottom: 0px;
+}
+ul.stream-nav li {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+ul.stream-nav li a {
+	display: block;
+	text-decoration: none;
+	font-size: 14px;
+	height: 40px;
+	line-height: 40px;
+	position: relative;
+}
+ul.stream-nav li:hover {
+	background-color: #F9F9F9;
+}
+.stream-active {
+	background-color: #F9F9F9;
+}
+.bullet-arrow {
+	background-image: url('images/bullet-arrow.png');
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 16px;
+	right: 0px;
+	width: 4px;
+	height: 8px;
+}
+.stream-post {
+	margin-bottom: 20px;
+}
+.community-profile-pic, .comment-profile-pic {
+	float: left;
+}
+.comment-profile-pic {
+	padding: 10px;
+}
+.stream-post-content, .stream-comment-content {
+	font-size: 14px;
+}
+.stream-post-content {
+	padding-left: 70px;
+}
+.stream-comment-content {
+	padding-left: 70px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.stream-post-name {
+	font-weight: bold;
+	margin-bottom: 2px;
+}
+.stream-post-name-span {
+	padding-top: 3px;
+	padding-bottom: 2px;
+	padding-right: 25px;
+}
+.doctor-badge {
+	background-image: url('images/doctor-badge.png');
+	background-repeat: no-repeat;
+	background-size: 18px 18px;
+	background-position: right center;
+}
+.stream-post-message {
+	margin-bottom: 4px;
+}
+.stream-post-footer {
+	font-size: 12px;
+	color: #999;
+}
+.stream-post-footer a {
+	color: #999;
+}
+.stream-post-comments {
+	background-color: #F9F9F9;
+	width: 100%;
+	margin-top: 10px;
 }
 
 /* D3 Styles */
