@@ -194,16 +194,24 @@ body.login {
 #login {
 	margin-left: auto;
 	margin-right: auto;
-	width: 500px;
+	width: 400px;
 	padding-left: 10px;
 	padding-right: 10px;
 }
-#login h2 {
+#login h1 {
 	text-align: center;
 	color: #333;
+	font-size: 52px;
+	font-weight: bold;
+	margin-bottom: 8px;
+	margin-top: 0;	
+}
+#login h2 {
+	text-align: center;
+	color: #666;
 	font-size: 22px;
 	font-weight: bold;
-	margin-bottom: 20px;
+	margin-bottom: 25px;
 	margin-top: 0;
 }
 form.form-community-post {
@@ -254,7 +262,7 @@ form.form-challenge input {
 	border-width: 0px;
 	font-size: 16px;
     border-radius: 5px;
-	padding: 5px;
+	padding: 10px;
 }
 form.form-login input[type=submit],
 form.form-challenge input[type=submit] {
